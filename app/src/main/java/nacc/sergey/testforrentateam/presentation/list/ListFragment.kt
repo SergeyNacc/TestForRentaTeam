@@ -15,6 +15,9 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
     private var binding: FragmentListBinding? = null
     private val viewModel by viewModels<ListViewModel>()
+    private val adapter by lazy {
+        UsersAdapter()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,6 +31,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding?.usersListView?.adapter = adapter
         viewModel.getUsers().observe(viewLifecycleOwner) {
 
         }

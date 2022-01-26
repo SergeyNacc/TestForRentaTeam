@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import nacc.sergey.testforrentateam.databinding.UserItemBinding
 import nacc.sergey.testforrentateam.domain.model.User
 import nacc.sergey.testforrentateam.presentation.list.UsersAdapter.UserViewHolder
@@ -24,6 +25,10 @@ class UsersAdapter : ListAdapter<User, UserViewHolder>(UsersDiffCallback) {
         fun bind(user: User) {
             binding.userItemName.text = user.full_name
             binding.userItemEmail.text = user.email
+            Picasso.get()
+                    .load(user.avatarUrl)
+                    .fit()
+                    .into(binding.userItemIcon)
         }
     }
 }
